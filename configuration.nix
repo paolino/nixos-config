@@ -15,7 +15,7 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.luks.devices."luks-cbab1f42-bfda-4f29-bfc4-a5ab90b91a12".device = "/dev/disk/by-uuid/cbab1f42-bfda-4f29-bfc4-a5ab90b91a12";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -49,8 +49,8 @@
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -72,12 +72,13 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -103,10 +104,14 @@
       pkgs.nixpkgs-fmt
       pkgs.seahorse
       pkgs.gnomeExtensions.clipboard-indicator
-      pkgs.gnomeExtensions.gtile
+      pkgs.gnomeExtensions.tiling-shell
       pkgs.git
       pkgs.gnome-shell-extensions
       pkgs.pavucontrol
+      pkgs.stgit
+      pkgs.qpwgraph
+      pkgs.audacity
+      pkgs.direnv
 
 
     ];
@@ -150,6 +155,7 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
+    pkgs.kitty
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -178,5 +184,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
