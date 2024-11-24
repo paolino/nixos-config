@@ -9,7 +9,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
+      # <home-manager/nixos>
     ];
 
   # Bootloader.
@@ -92,58 +92,7 @@
       #  thunderbird
     ];
   };
-  home-manager.users.paolino = { pkgs, ... }: {
-    home.packages = [
-      pkgs.atool
-      pkgs.httpie
-      pkgs.cameractrls-gtk4
-      pkgs.vim
-      pkgs._1password-cli
-      pkgs._1password-gui
-      pkgs.google-chrome
-      pkgs.nixpkgs-fmt
-      pkgs.seahorse
-      pkgs.gnomeExtensions.clipboard-indicator
-      pkgs.gnomeExtensions.tiling-shell
-      pkgs.git
-      pkgs.gnome-shell-extensions
-      pkgs.pavucontrol
-      pkgs.stgit
-      pkgs.qpwgraph
-      pkgs.audacity
-      pkgs.direnv
 
-
-    ];
-    programs.home-manager.enable = true;
-
-    nixpkgs.config.allowUnfree = true;
-    nixpkgs.config.allowUnfreePredicate = (_: true);
-    programs.vscode = {
-      enable = true;
-      extensions = with pkgs.vscode-extensions; [
-        dracula-theme.theme-dracula
-        vscodevim.vim
-        yzhang.markdown-all-in-one
-
-      ];
-    };
-    programs.ssh.matchBlocks = {
-      "plutimus" = {
-        hostname = "plutimus.com";
-        user = "paolino";
-        identityFile = "/home/paolino/.ssh/ed25519";
-        forwardAgent = true;
-      };
-
-    };
-
-    programs.bash.enable = true;
-
-    # The state version is required and should stay at the version you
-    # originally installed.
-    home.stateVersion = "24.05";
-  };
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -185,4 +134,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "root" "paolino" ];
 }
