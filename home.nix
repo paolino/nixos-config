@@ -95,24 +95,25 @@
     pciutils # lspci
     usbutils # lsusb
 
-    atool
-    httpie
-    cameractrls-gtk4
-    vim
     _1password-cli
     _1password-gui
-    google-chrome
-    nixpkgs-fmt
-    seahorse
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.tiling-shell
+    atool
+    audacity
+    cameractrls-gtk4
+    direnv
     git
     gnome-shell-extensions
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.tiling-shell
+    google-chrome
+    httpie
+    nixpkgs-fmt
     pavucontrol
-    stgit
     qpwgraph
-    audacity
-    direnv
+    seahorse
+    slack
+    stgit
+    vim
   ];
 
     nixpkgs.config.allowUnfree = true;
