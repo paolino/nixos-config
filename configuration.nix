@@ -13,9 +13,11 @@
     ];
 
   # Bootloader.
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
   boot.initrd.luks.devices."luks-cbab1f42-bfda-4f29-bfc4-a5ab90b91a12".device = "/dev/disk/by-uuid/cbab1f42-bfda-4f29-bfc4-a5ab90b91a12";
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -49,8 +51,9 @@
   services.xserver.enable = true;
 
   # Enable the XFCE Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {

@@ -105,6 +105,7 @@
     gnome-shell-extensions
     gnomeExtensions.clipboard-indicator
     gnomeExtensions.tiling-shell
+    gnome-tweaks
     google-chrome
     httpie
     nixpkgs-fmt
@@ -114,6 +115,9 @@
     slack
     stgit
     vim
+    valgrind
+    cheese
+    bluez
   ];
 
     nixpkgs.config.allowUnfree = true;
